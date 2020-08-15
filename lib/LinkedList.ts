@@ -22,6 +22,33 @@ export class LinkedList<T> {
     }
   }
 
+  /**
+   * Determine wheter the given value is an LinkedList
+   * @param value - any
+   * @returns boolean
+   */
+  static is(value: unknown) {
+    if (typeof value !== 'object') return false;
+    const val = value as LinkedList<unknown>;
+    // check if it has signature property
+    if (!val.hasOwnProperty('length')) return false;
+    if (!val.hasOwnProperty('head')) return false;
+    if (!val.hasOwnProperty('tail')) return false;
+
+    // check if it's node is valid
+    if (val.length > 0) {
+      const head = val.head;
+      const tail = val.tail;
+
+      // check if it's has signature property of Node
+      if (!head.hasOwnProperty('next')) return false;
+      if (!head.hasOwnProperty('prev')) return false;
+      if (!head.hasOwnProperty('value')) return false;
+    }
+
+    return true;
+  }
+
 	/**
      * append the rest parameter of method push
      * @param value 

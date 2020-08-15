@@ -1,4 +1,7 @@
-export class ListNode<T> {
+/**
+ * @internal
+ */
+class ListNode<T> {
 	value: T;
 	next: ListNode<T> | null;
 	prev: ListNode<T> | null;
@@ -8,7 +11,13 @@ export class ListNode<T> {
 		this.prev = null;
 	}
 }
-
+/**
+  * # LinkedList 
+  * 
+  * LinkedList are list-like objects whose prototype has methods to perform traversal and mutation operations. Neither the length of a JavaScript array nor the types of its elements are fixed. Since an array's length can change at any time, and data can be stored at non-contiguous locations in the array, JavaScript arrays are not guaranteed to be dense; this depends on how the programmer chooses to use them. In general, these are convenient characteristics; but if these features are not desirable for your particular use, you might consider using typed arrays.
+  * 
+  * LikedList cannot use strings as element indexes (as in an associative array) but must use integers. Setting or accessing via non-integers using bracket notation (or dot notation) will not set or retrieve an element from the array list itself, but will set or access a variable associated with that array's object property collection. The array's object properties and list of array elements are separate, and the array's traversal and mutation operations cannot be applied to these named properties.
+ */
 export class LinkedList<T> {
 	length: number;
 	head: ListNode<T> | null;
@@ -23,9 +32,14 @@ export class LinkedList<T> {
 	}
 
 	/**
+   * @public
    * creates a new, shallow-copied LinkedList instance from an array-like or iterable object.
    * @param value - Iterable object
    * @returns LinkedList
+   * ## Example
+   * ```ts
+   * LinkedList.from([1, 2, 3, "world"]);
+   * ```
    */
 	static from(value: string | object | Array<unknown>) {
 		const valueType = typeof value;
@@ -83,7 +97,7 @@ export class LinkedList<T> {
 
 	/**
      * append the rest parameter of method push
-     * @param value 
+     * @param value - input array
      */
 	private pushArray(value: Array<T>) {
 		value.forEach((n) => {
@@ -94,7 +108,7 @@ export class LinkedList<T> {
 
 	/**
      * unshift the rest parameter of method unshift
-     * @param value 
+     * @param value - input array
      */
 	private unshiftArray(value: Array<T>) {
 		for (let i = value.length - 1; i >= 0; i--) {
@@ -113,7 +127,7 @@ export class LinkedList<T> {
 	}
 
 	/**
-     * @param value 
+     * @param value - input array
      * @param rest - Optional
      * @example
      *  list.push(1, 2, 4, 6)
@@ -142,7 +156,7 @@ export class LinkedList<T> {
 
 	/**
    * 
-   * @param value 
+   * @param value - input array
    * @param rest - Optional
    * 
    * @returns number - new length

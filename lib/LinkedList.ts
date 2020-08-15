@@ -88,8 +88,20 @@ export class LinkedList<T> {
 	private pushArray(value: Array<T>) {
 		value.forEach((n) => {
 			this.push(n);
-		});
-	}
+    });
+    return this.length;
+  }
+  
+  /**
+     * unshift the rest parameter of method unshift
+     * @param value 
+     */
+  private unshiftArray(value: Array<T>) {
+    for (let i = value.length - 1; i >= 0; i--) {
+      this.unshift(value[i]);
+    }
+    return this.length;
+  }
 
 	/**
      * clear all elements
@@ -105,9 +117,17 @@ export class LinkedList<T> {
      * @param rest - Optional
      * @example
      *  list.push(1, 2, 4, 6)
+     * 
+     * @returns number - new length
      */
 	push(value: T, ...rest: Array<T>) {
-		const node = new ListNode<T>(value);
+    // handle multiple arguments
+		// e.g list.push(2, 3)
+		if (rest.length > 0) {
+			return this.pushArray([value, ...rest]);
+    }
+    
+    const node = new ListNode<T>(value);
 		if (this.length === 0) {
 			this.head = node;
 			this.tail = node;
@@ -116,12 +136,33 @@ export class LinkedList<T> {
 		this.tail.next = node;
 		this.tail = node;
 
-		this.length++;
-
-		// handle multiple arguments
-		// e.g list.push(2, 3)
+    this.length++;
+    return this.length;
+  }
+  
+  /**
+   * 
+   * @param value 
+   * @param rest - Optional
+   * 
+   * @returns number - new length
+   */
+  unshift(value: T, ...rest: Array<T>) {
+    // handle multiple arguments
+		// e.g list.unshift(2, 3)
 		if (rest.length > 0) {
-			this.pushArray(rest);
+			return this.unshiftArray([value, ...rest]);
+    }
+    const node = new ListNode<T>(value);
+		if (this.length === 0) {
+			this.head = node;
+			this.tail = node;
 		}
-	}
+
+    node.next = this.head;
+		this.head = node;
+
+    this.length++;
+    return this.length;
+  }
 }

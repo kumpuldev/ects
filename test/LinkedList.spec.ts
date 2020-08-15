@@ -45,7 +45,7 @@ describe(
 			"should push single element",
 			() => {
 				const list = new LinkedList<unknown>();
-				list.push(12);
+				expect(list.push(12)).eq(1);
 				expect(list.head.value).eq(12);
 			},
 		);
@@ -54,8 +54,28 @@ describe(
 			"should push multiple element",
 			() => {
 				const list = new LinkedList<unknown>();
-				list.push(12, 33, 44);
+				expect(list.push(12, 33, 44)).eq(3);
 				expect(list.length).eq(3);
+			},
+		);
+
+		it(
+			"should unshift one element",
+			() => {
+				const list = new LinkedList<number>(2, 3, 4);
+				expect(list.unshift(1)).eq(4);
+				expect(list.head.value).eq(1);
+			},
+    );
+    
+    it(
+			"should unshift multiple element",
+			() => {
+				const list = new LinkedList<number>(2, 3, 4);
+        const newLength = list.unshift(1, 100, 200);
+        expect(newLength).eq(6);
+        expect(list.head.value).eq(1);
+        expect(list.head.next.value).eq(100);
 			},
 		);
 	},

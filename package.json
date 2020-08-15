@@ -1,6 +1,7 @@
 {
   "name": "@adeyahya/data-structure",
   "description": "advance data structure for javascript",
+  "license": "MIT",
   "author": {
     "email": "adeyahyaprasetyo@gmail.com",
     "name": "Ade Yahya Prasetyo",

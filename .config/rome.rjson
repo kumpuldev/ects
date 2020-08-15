@@ -1,8 +1,12 @@
 // For configuration documentation see http://romefrontend.dev/#project-configuration
 name: "DataStructure"
 lint: {
+	globals: [
+		"it"
+		"describe"
+]
 	ignore: [
-		"test"
+		"node_modules"
 ]
 }
 root: true

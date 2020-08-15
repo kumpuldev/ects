@@ -88,20 +88,20 @@ export class LinkedList<T> {
 	private pushArray(value: Array<T>) {
 		value.forEach((n) => {
 			this.push(n);
-    });
-    return this.length;
-  }
-  
-  /**
+		});
+		return this.length;
+	}
+
+	/**
      * unshift the rest parameter of method unshift
      * @param value 
      */
-  private unshiftArray(value: Array<T>) {
-    for (let i = value.length - 1; i >= 0; i--) {
-      this.unshift(value[i]);
-    }
-    return this.length;
-  }
+	private unshiftArray(value: Array<T>) {
+		for (let i = value.length - 1; i >= 0; i--) {
+			this.unshift(value[i]);
+		}
+		return this.length;
+	}
 
 	/**
      * clear all elements
@@ -121,13 +121,13 @@ export class LinkedList<T> {
      * @returns number - new length
      */
 	push(value: T, ...rest: Array<T>) {
-    // handle multiple arguments
+		// handle multiple arguments
 		// e.g list.push(2, 3)
 		if (rest.length > 0) {
 			return this.pushArray([value, ...rest]);
-    }
-    
-    const node = new ListNode<T>(value);
+		}
+
+		const node = new ListNode<T>(value);
 		if (this.length === 0) {
 			this.head = node;
 			this.tail = node;
@@ -136,33 +136,33 @@ export class LinkedList<T> {
 		this.tail.next = node;
 		this.tail = node;
 
-    this.length++;
-    return this.length;
-  }
-  
-  /**
+		this.length++;
+		return this.length;
+	}
+
+	/**
    * 
    * @param value 
    * @param rest - Optional
    * 
    * @returns number - new length
    */
-  unshift(value: T, ...rest: Array<T>) {
-    // handle multiple arguments
+	unshift(value: T, ...rest: Array<T>) {
+		// handle multiple arguments
 		// e.g list.unshift(2, 3)
 		if (rest.length > 0) {
 			return this.unshiftArray([value, ...rest]);
-    }
-    const node = new ListNode<T>(value);
+		}
+		const node = new ListNode<T>(value);
 		if (this.length === 0) {
 			this.head = node;
 			this.tail = node;
 		}
 
-    node.next = this.head;
+		node.next = this.head;
 		this.head = node;
 
-    this.length++;
-    return this.length;
-  }
+		this.length++;
+		return this.length;
+	}
 }

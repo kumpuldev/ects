@@ -66,16 +66,16 @@ describe(
 				expect(list.unshift(1)).eq(4);
 				expect(list.head.value).eq(1);
 			},
-    );
-    
-    it(
+		);
+
+		it(
 			"should unshift multiple element",
 			() => {
 				const list = new LinkedList<number>(2, 3, 4);
-        const newLength = list.unshift(1, 100, 200);
-        expect(newLength).eq(6);
-        expect(list.head.value).eq(1);
-        expect(list.head.next.value).eq(100);
+				const newLength = list.unshift(1, 100, 200);
+				expect(newLength).eq(6);
+				expect(list.head.value).eq(1);
+				expect(list.head.next.value).eq(100);
 			},
 		);
 	},

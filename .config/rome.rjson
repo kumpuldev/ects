@@ -1,0 +1,8 @@
+// For configuration documentation see http://romefrontend.dev/#project-configuration
+name: "DataStructure"
+lint: {
+	ignore: [
+		"test"
+]
+}
+root: true

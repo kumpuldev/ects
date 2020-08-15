@@ -26,17 +26,20 @@ describe(
 			"should determine whether the given value is an LinkedList",
 			() => {
 				expect(LinkedList.is([2, 3])).eq(false);
-        const list = new LinkedList(2, 3);
+				const list = new LinkedList(2, 3);
 				expect(LinkedList.is(list)).eq(true);
 			},
-    );
-    
-    it("should conver iterable object into LinkedList", () => {
-      const list = LinkedList.from([2,3,4,5]);
-      expect(LinkedList.is(list)).eq(true);
-      expect(list.length).eq(4);
-      expect(list.head.value).eq(2);
-    })
+		);
+
+		it(
+			"should conver iterable object into LinkedList",
+			() => {
+				const list = LinkedList.from([2, 3, 4, 5]);
+				expect(LinkedList.is(list)).eq(true);
+				expect(list.length).eq(4);
+				expect(list.head.value).eq(2);
+			},
+		);
 
 		it(
 			"should push single element",

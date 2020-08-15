@@ -34,9 +34,9 @@ export class LinkedList<T> {
 			throw new TypeError(`${value} is not iterable`);
 		}
 
-    const list = new LinkedList<unknown>();
-    const valueArray = [].slice.call(value);
-    list.pushArray(valueArray);
+		const list = new LinkedList<unknown>();
+		const valueArray = [].slice.call(value);
+		list.pushArray(valueArray);
 		return list;
 	}
 

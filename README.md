@@ -1,5 +1,6 @@
 Data Structure collections for JavaScript
 ====================================
+![CI](https://github.com/kumpuldev/ects/workflows/CI/badge.svg)
 
 **ects** is collection of Data Structure for Javascript
 

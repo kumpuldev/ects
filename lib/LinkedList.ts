@@ -26,7 +26,7 @@ export class LinkedList<T> {
    * const list = new LinkedList(1, 2, 3);
    * list.length // 3
    * ```
-   * @since 0.0.1
+   * @since 0.0.0-alpha
    */
 	length: number;
 
@@ -46,7 +46,7 @@ export class LinkedList<T> {
    * const list = new LinkedList(1, 2, 3);
    * list.tail.value // 3
    * ```
-   * @since 0.0.1
+   * @since 0.0.0-alpha
    */
 	tail: ListNode<T> | null;
 
@@ -55,7 +55,7 @@ export class LinkedList<T> {
    * new LinkedList(1, 2, 3);
    * // LinkedList[1, 2, 3]
    * ```
-   * @since 0.0.1
+   * @since 0.0.0-alpha
    * @param value 
    * @param rest 
    */
@@ -80,7 +80,7 @@ export class LinkedList<T> {
 	 * ```
    * 
    * @public
-   * @since 0.0.1
+   * @since 0.0.0-alpha
 	 * @param value - Iterable Object
 	 * @returns A new `LinkedList` instance
 	 * 
@@ -109,7 +109,7 @@ export class LinkedList<T> {
    * ```
    * 
    * @public
-   * @since 0.0.1
+   * @since 0.0.0-alpha
    * @param value - the value to be checked
    * @returns - `true` if the value is an `LinkedList`; otherwise, `false`.
    * 
@@ -152,6 +152,8 @@ export class LinkedList<T> {
 
 	/**
    * append the rest parameter of method push
+   * @private
+   * @since 0.0.0-alpha
    */
 	private pushArray(value: Array<T>): number {
 		value.forEach((n) => {
@@ -162,9 +164,9 @@ export class LinkedList<T> {
 
 	/**
    * unshift the rest parameter of method unshift
-	 * @public
+	 * @private
    * @returns number - new LinkedList length
-   * @since 0.0.1
+   * @since 0.0.0-alpha
    */
 	private unshiftArray(value: Array<T>): number {
 		for (let i = value.length - 1; i >= 0; i--) {
@@ -180,6 +182,7 @@ export class LinkedList<T> {
    * list.clear();
    * list // LinkedList[]
    * ```
+   * @since 0.0.0-alpha
    */
 	clear() {
 		this.length = 0;
@@ -199,7 +202,7 @@ export class LinkedList<T> {
 	 * ```
    * 
    * @public
-   * @since 0.0.1
+   * @since 0.0.0-alpha
    */
 	push(value: T, ...rest: Array<T>) {
 		// handle multiple arguments
@@ -241,7 +244,7 @@ export class LinkedList<T> {
    * ```
    * 
    * @public
-   * @since 0.0.1
+   * @since 0.0.0-alpha
    */
 	unshift(value: T, ...rest: Array<T>) {
 		// handle multiple arguments
@@ -275,7 +278,7 @@ export class LinkedList<T> {
    * ```
    * 
    * @public
-   * @since 0.0.1
+   * @since 0.0.0-alpha
    * @returns new instance of an `LinkedList`
    */
 	toArray() {
@@ -304,7 +307,7 @@ export class LinkedList<T> {
    * ```
    * 
    * @public
-   * @since 0.0.1
+   * @since 0.0.0-alpha
    * @param value - `LinkedList` to be concat
    * @returns new instance of `LinkedList`
    */

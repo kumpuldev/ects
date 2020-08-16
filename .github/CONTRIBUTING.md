@@ -35,7 +35,12 @@ your [pull requests](https://help.github.com/articles/creating-a-pull-request).
 
 ## Coding Style
 
-* we use Romefrontend as linter, please run `yarn lint:apply` before pushing
+* we use Romefrontend as linter
+Run the following command to check or apply linter
+```bash
+yarn lint
+yarn lint:apply
+```
 
 # Functionality Testing
 

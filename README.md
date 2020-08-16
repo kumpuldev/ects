@@ -6,11 +6,11 @@
 
 ## Collection Status
 
-| Collection | Status |
-| ---------- | ------ |
+| Collection | Status         |
+| ---------- | -------------- |
 | LinkedList | In Development |
-| Graph | Pipeline |
-| Trees | Pipeline |
+| Graph      | Pipeline       |
+| Trees      | Pipeline       |
 
 ### License
 MIT

@@ -51,5 +51,5 @@ yarn test
 
 ## License
 
-By contributing to Immutable.js, you agree that your contributions will be
+By contributing to ects, you agree that your contributions will be
 licensed under its MIT license.

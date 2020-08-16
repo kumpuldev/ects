@@ -1,10 +1,10 @@
-<p align="center">
-  <img src="https://res.cloudinary.com/dt2mntbmf/image/upload/v1597508556/logo_ys378g.svg" width="100%", height="auto">
-</p>
+Data Structure collections for JavaScript
+====================================
 
 **ects** is collection of Data Structure for Javascript
 
-## Collection Status
+Development Status
+------------------
 
 | Collection | Status         |
 | ---------- | -------------- |
@@ -12,5 +12,20 @@
 | Graph      | Pipeline       |
 | Trees      | Pipeline       |
 
-### License
-MIT
+Contribution
+------------
+
+Use [Github issues](https://github.com/kumpuldev/ects/issues) for requests.
+
+We actively welcome pull requests, learn how to [contribute](https://github.com/kumpuldev/ects/blob/master/.github/CONTRIBUTING.md).
+
+
+Changelog
+---------
+
+Changes are tracked as [Github releases](https://github.com/kumpuldev/ects/releases).
+
+License
+-------
+
+ects is [MIT-licensed](https://github.com/kumpuldev/ects/blob/master/LICENSE).

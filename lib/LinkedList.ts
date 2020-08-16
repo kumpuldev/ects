@@ -332,5 +332,50 @@ export class LinkedList<T> {
 		return new LinkedList(...[...current, ...next]);
 	}
 
-	find() {}
+	/**
+   * return the first element in the provided LinkedList that satisfies
+   * the provided testing function
+   * 
+   * ```ts
+   * const list = new LinkedList(1, 2, 3, 4, 5);
+   * const found = list.find(element => element.value > 2);
+   * console.log(found.value); // 3
+   * ```
+   * 
+   * ### Notes
+   * when it found an element, it will return the reference to the element/Node
+   * modifying it will affect the original Node inside LinkedList
+   * 
+   * ```ts
+   * const list = new LinkedList(1,2,3);
+   * const found = list.find(element => element.value === 2);
+   * found.value = "two";
+   * 
+   * console.log(list.toArray()); // [1, "two", 3];
+   * ```
+   * 
+   * @since 0.0.2-alpha
+   * @public
+   * @param cb - function to execute on each element in the LinkedList, taking 3 arguments
+   */
+	find(
+		cb: (
+			element: ListNode<T>,
+			index?: number,
+			linkedList?: LinkedList<T>,
+		) => boolean,
+	): ListNode<T> | null {
+		let currentNode = this.head;
+		let idx = 0;
+		while (currentNode) {
+			if (cb(currentNode, idx, this)) {
+				return currentNode;
+			}
+
+			currentNode = currentNode.next;
+			idx++;
+		}
+
+		return null;
+	}
 }

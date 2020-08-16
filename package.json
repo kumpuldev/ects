@@ -7,7 +7,7 @@
     "name": "Ade Yahya Prasetyo",
     "url": "https://www.adeyahya.com"
   },
-  "version": "0.0.1",
+  "version": "0.0.0-alpha",
   "main": "index.js",
   "dependencies": {
     "rome": "^10.0.4-beta"

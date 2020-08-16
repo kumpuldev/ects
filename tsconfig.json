@@ -10,7 +10,8 @@
 			"mocha"
 		],
 		"lib": [
-			"es5"
+			"es5",
+			"DOM"
 		],
 		"outDir": "dist"
 	},

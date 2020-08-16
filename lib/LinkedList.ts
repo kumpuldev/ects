@@ -199,11 +199,15 @@ export class LinkedList<T> {
 		const node = new ListNode<T>(value);
 		if (this.length === 0) {
 			this.head = node;
-			this.tail = node;
+			this.tail = {...node};
+		} else if (this.length === 1) {
+			this.head.next = node;
+			this.tail = this.head.next;
+			this.tail.prev = this.head;
+		} else {
+			this.tail.next = node;
+			this.tail = this.tail.next;
 		}
-
-		this.tail.next = node;
-		this.tail = node;
 
 		this.length++;
 		return this.length;
@@ -231,14 +235,60 @@ export class LinkedList<T> {
 		}
 		const node = new ListNode<T>(value);
 		if (this.length === 0) {
-			this.head = node;
+			this.head = {...node};
 			this.tail = node;
+		} else if (this.length === 1) {
+			this.tail.prev = node;
+			this.head = this.tail.prev;
+			this.head.next = this.tail;
+		} else {
+			node.next = this.head;
+			this.head.prev = node;
+			this.head = this.head.prev;
 		}
-
-		node.next = this.head;
-		this.head = node;
 
 		this.length++;
 		return this.length;
+	}
+
+	/**
+   * Convert LinkedList into JavaScript Array
+   * @returns new instance of an `LinkedList`
+   * 
+   * ```ts
+   * const list = new LinkedList(1,2,3);
+   * list.toArray(); // [1,2,3]
+   * ```
+   */
+	toArray() {
+		const arr = [];
+		let currentNode = this.head;
+		while (currentNode) {
+			arr.push(currentNode.value);
+			currentNode = currentNode.next;
+		}
+		return arr;
+	}
+
+	/**
+   * Concat Multiple `LinkedList` and return new instance of `LinkedList`
+   * @param value - `LinkedList` to be concat
+   * 
+   * ```ts
+   * const list = new LinkedList(1, 2);
+   * const secondList = new LinkedList(3, 4);
+   * const thirdList = new LinkedList(5, 6, 7);
+   * 
+   * list.concat(secondList);
+   * // LinkedList[1, 2, 3, 4]
+   * 
+   * secondList.concat(list).concat(thirdList);
+   * // LinkedList[3, 4, 1, 2, 5, 6, 7]
+   * ```
+   */
+	concat(value: LinkedList<T>): LinkedList<T> {
+		const current = this.toArray();
+		const next = value.toArray();
+		return new LinkedList(...[...current, ...next]);
 	}
 }

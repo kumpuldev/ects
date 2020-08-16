@@ -62,8 +62,8 @@ describe(
 		it(
 			"should unshift one element",
 			() => {
-				const list = new LinkedList<number>(2, 3, 4);
-				expect(list.unshift(1)).eq(4);
+				const list = new LinkedList<number>(2);
+				expect(list.unshift(1)).eq(2);
 				expect(list.head.value).eq(1);
 			},
 		);
@@ -76,6 +76,34 @@ describe(
 				expect(newLength).eq(6);
 				expect(list.head.value).eq(1);
 				expect(list.head.next.value).eq(100);
+			},
+		);
+
+		it(
+			"should convert into array",
+			() => {
+				const list = new LinkedList(1, 2, 3);
+				expect(list.toArray()).deep.eq([1, 2, 3]);
+			},
+		);
+
+		it(
+			"should concat multiple LinkedList",
+			() => {
+				const list = new LinkedList(1, 2);
+				const secondList = new LinkedList(3, 4);
+				const thirdList = new LinkedList(5, 6, 7);
+
+				expect(list.concat(secondList)).deep.eq(new LinkedList(1, 2, 3, 4));
+				expect(list.concat(secondList).concat(thirdList)).deep.eq(
+					new LinkedList(1, 2, 3, 4, 5, 6, 7),
+				);
+				expect(secondList.concat(list).concat(thirdList)).deep.eq(
+					new LinkedList(3, 4, 1, 2, 5, 6, 7),
+				);
+				expect(list).deep.eq(new LinkedList(1, 2));
+				expect(secondList).deep.eq(new LinkedList(3, 4));
+				expect(thirdList).deep.eq(new LinkedList(5, 6, 7));
 			},
 		);
 	},

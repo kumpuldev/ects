@@ -14,14 +14,49 @@ class ListNode<T> {
 /**
   * # LinkedList 
   * 
-  * LinkedList are list-like objects whose prototype has methods to perform traversal and mutation operations. Neither the length of a JavaScript array nor the types of its elements are fixed. Since an array's length can change at any time, and data can be stored at non-contiguous locations in the array, JavaScript arrays are not guaranteed to be dense; this depends on how the programmer chooses to use them. In general, these are convenient characteristics; but if these features are not desirable for your particular use, you might consider using typed arrays.
-  * 
-  * LikedList cannot use strings as element indexes (as in an associative array) but must use integers. Setting or accessing via non-integers using bracket notation (or dot notation) will not set or retrieve an element from the array list itself, but will set or access a variable associated with that array's object property collection. The array's object properties and list of array elements are separate, and the array's traversal and mutation operations cannot be applied to these named properties.
- */
+  * LinkedList are list-like objects whose prototype has methods to perform traversal and mutation operations.
+  * the api is very similiar with standard `Array` in javascript.
+  * but the collection of data elements whose order is not given by their physical placement in memory
+  * Instead, each element points to the next and to the previous
+  */
 export class LinkedList<T> {
+	/**
+   * Total length of `LinkedList` element
+   * ```ts
+   * const list = new LinkedList(1, 2, 3);
+   * list.length // 3
+   * ```
+   */
 	length: number;
+
+	/**
+   * the first `ListNode` of `LinkedList`
+   * ```ts
+   * const list = new LinkedList(1, 2, 3);
+   * list.head.value // 1
+   * list.head.next.value // 2
+   * ```
+   */
 	head: ListNode<T> | null;
+
+	/**
+   * the last `ListNode` of `LinkedList`
+   * ```ts
+   * const list = new LinkedList(1, 2, 3);
+   * list.tail.value // 3
+   * ```
+   */
 	tail: ListNode<T> | null;
+
+	/**
+   * ```ts
+   * new LinkedList(1, 2, 3);
+   * // LinkedList[1, 2, 3]
+   * ```
+   * 
+   * @param value 
+   * @param rest 
+   */
 	constructor(value?: T, ...rest: Array<T>) {
 		this.length = 0;
 		this.head = null;
@@ -32,16 +67,20 @@ export class LinkedList<T> {
 	}
 
 	/**
-   * @public
-   * creates a new, shallow-copied LinkedList instance from an array-like or iterable object.
-   * @param value - Iterable object
-   * @returns LinkedList
-   * ## Example
-   * ```ts
-   * LinkedList.from([1, 2, 3, "world"]);
-   * ```
-   */
-	static from(value: string | object | Array<unknown>) {
+	 * The `Array.from()` static method creates a new, shallow-copied Array instance from an array-like or iterable object
+   * @alpha
+	 * @param value - Iterable Object
+	 * @returns A new `LinkedList` instance
+	 * 
+	 * ```ts
+	 * LinkedList.from([1, 2, 3, "world"]);
+   * // output LinkedList[1, 2, 3, "world"]
+   * 
+   * LinkedList.from("helloworld");
+   * // output LinkedList["h", "e", "l", "l", "o", "w", "o", "r", "l", "d"]
+	 * ```
+	 */
+	static from(value: string | object | Array<unknown>): LinkedList<unknown> {
 		const valueType = typeof value;
 
 		if (!value || valueType === "number") {
@@ -55,11 +94,20 @@ export class LinkedList<T> {
 	}
 
 	/**
-   * Determine wheter the given value is an LinkedList
-   * @param value - any
-   * @returns boolean
-   */
-	static is(value: unknown) {
+	 * Determine wheter the given value is an `LinkedList`
+   * @public
+   * @since 0.1.1
+   * @param value - the value to be checked
+   * @returns - `true` if the value is an `LinkedList`; otherwise, `false`.
+   * 
+   * ```ts
+   * LinkedList.is([3, 2, 1]); // false
+   * 
+   * const list = new LinkedList(3, 2, 1);
+   * LinkedList.is(list) // true
+   * ```
+	 */
+	static is(value: unknown): boolean {
 		if (typeof value !== "object") {
 			return false;
 		}
@@ -96,10 +144,9 @@ export class LinkedList<T> {
 	}
 
 	/**
-     * append the rest parameter of method push
-     * @param value - input array
-     */
-	private pushArray(value: Array<T>) {
+   * append the rest parameter of method push
+   */
+	private pushArray(value: Array<T>): number {
 		value.forEach((n) => {
 			this.push(n);
 		});
@@ -107,10 +154,10 @@ export class LinkedList<T> {
 	}
 
 	/**
-     * unshift the rest parameter of method unshift
-     * @param value - input array
-     */
-	private unshiftArray(value: Array<T>) {
+   * unshift the rest parameter of method unshift
+	 * @returns number - new LinkedList length
+   */
+	private unshiftArray(value: Array<T>): number {
 		for (let i = value.length - 1; i >= 0; i--) {
 			this.unshift(value[i]);
 		}
@@ -118,8 +165,13 @@ export class LinkedList<T> {
 	}
 
 	/**
-     * clear all elements
-     */
+   * clear all elements
+   * ```ts
+   * const list = new LinkedList(1, 2, 3);
+   * list.clear();
+   * list // LinkedList[]
+   * ```
+   */
 	clear() {
 		this.length = 0;
 		this.head = null;
@@ -127,13 +179,16 @@ export class LinkedList<T> {
 	}
 
 	/**
-     * @param value - input array
-     * @param rest - Optional
-     * @example
-     *  list.push(1, 2, 4, 6)
-     * 
-     * @returns number - new length
-     */
+   * Add one or more element to the end of an `LinkedList` and returns
+   * the new length of the `LinkedList`
+   * 
+	 * ```ts
+	 * const list = new LinkedList(1, 2);
+	 * list.push(3, 4); // 4
+   * list
+   * // LinkedList[1, 2, 3, 4]
+	 * ```
+   */
 	push(value: T, ...rest: Array<T>) {
 		// handle multiple arguments
 		// e.g list.push(2, 3)
@@ -155,11 +210,18 @@ export class LinkedList<T> {
 	}
 
 	/**
+   * Add one or more element to the beginning of an `LinkedList` and returns
+   * the new length of the `LinkedList`
    * 
-   * @param value - input array
-   * @param rest - Optional
+   * ```ts
+   * const list = new LinkedList(1, 2, 3);
+   * list.unshift("first") // 4
+   * list // LinkedList["first", 1, 2, 3]
    * 
-   * @returns number - new length
+   * list.unshift("very first", "second first"); // 6
+   * list
+   * // LinkedList["very first", "second first", "first", 1, 2, 3]
+   * ```
    */
 	unshift(value: T, ...rest: Array<T>) {
 		// handle multiple arguments

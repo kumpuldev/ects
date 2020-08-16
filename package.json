@@ -1,13 +1,9 @@
 {
-  "name": "ects",
+  "name": "@kumpuldev/ects",
   "description": "advance data structure for javascript",
   "license": "MIT",
-  "author": {
-    "email": "adeyahyaprasetyo@gmail.com",
-    "name": "Ade Yahya Prasetyo",
-    "url": "https://www.adeyahya.com"
-  },
-  "version": "0.0.0-alpha",
+  "author": "Ade Yahya Prasetyo <adeyahyaprasetyo@gmail.com> (https://www.adeyahya.com)",
+  "version": "0.0.2-alpha",
   "main": "index.js",
   "dependencies": {
     "rome": "^10.0.4-beta"
@@ -31,7 +27,16 @@
     "typedoc": "^0.18.0",
     "typescript": "^3.9.7"
   },
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com/"
-  }
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kumpuldev/ects.git"
+  },
+  "bugs": {
+    "url": "https://github.com/kumpuldev/ects/issues"
+  },
+  "homepage": "https://github.com/kumpuldev/ects#readme"
 }

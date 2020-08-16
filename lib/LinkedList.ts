@@ -331,4 +331,6 @@ export class LinkedList<T> {
 		const next = value.toArray();
 		return new LinkedList(...[...current, ...next]);
 	}
+
+	find() {}
 }

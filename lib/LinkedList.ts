@@ -26,6 +26,7 @@ export class LinkedList<T> {
    * const list = new LinkedList(1, 2, 3);
    * list.length // 3
    * ```
+   * @since 0.0.1
    */
 	length: number;
 
@@ -45,6 +46,7 @@ export class LinkedList<T> {
    * const list = new LinkedList(1, 2, 3);
    * list.tail.value // 3
    * ```
+   * @since 0.0.1
    */
 	tail: ListNode<T> | null;
 
@@ -53,7 +55,7 @@ export class LinkedList<T> {
    * new LinkedList(1, 2, 3);
    * // LinkedList[1, 2, 3]
    * ```
-   * 
+   * @since 0.0.1
    * @param value 
    * @param rest 
    */
@@ -68,10 +70,7 @@ export class LinkedList<T> {
 
 	/**
 	 * The `Array.from()` static method creates a new, shallow-copied Array instance from an array-like or iterable object
-   * @alpha
-	 * @param value - Iterable Object
-	 * @returns A new `LinkedList` instance
-	 * 
+   * 
 	 * ```ts
 	 * LinkedList.from([1, 2, 3, "world"]);
    * // output LinkedList[1, 2, 3, "world"]
@@ -79,6 +78,12 @@ export class LinkedList<T> {
    * LinkedList.from("helloworld");
    * // output LinkedList["h", "e", "l", "l", "o", "w", "o", "r", "l", "d"]
 	 * ```
+   * 
+   * @public
+   * @since 0.0.1
+	 * @param value - Iterable Object
+	 * @returns A new `LinkedList` instance
+	 * 
 	 */
 	static from(value: string | object | Array<unknown>): LinkedList<unknown> {
 		const valueType = typeof value;
@@ -95,10 +100,6 @@ export class LinkedList<T> {
 
 	/**
 	 * Determine wheter the given value is an `LinkedList`
-   * @public
-   * @since 0.1.1
-   * @param value - the value to be checked
-   * @returns - `true` if the value is an `LinkedList`; otherwise, `false`.
    * 
    * ```ts
    * LinkedList.is([3, 2, 1]); // false
@@ -106,6 +107,12 @@ export class LinkedList<T> {
    * const list = new LinkedList(3, 2, 1);
    * LinkedList.is(list) // true
    * ```
+   * 
+   * @public
+   * @since 0.0.1
+   * @param value - the value to be checked
+   * @returns - `true` if the value is an `LinkedList`; otherwise, `false`.
+   * 
 	 */
 	static is(value: unknown): boolean {
 		if (typeof value !== "object") {
@@ -155,7 +162,9 @@ export class LinkedList<T> {
 
 	/**
    * unshift the rest parameter of method unshift
-	 * @returns number - new LinkedList length
+	 * @public
+   * @returns number - new LinkedList length
+   * @since 0.0.1
    */
 	private unshiftArray(value: Array<T>): number {
 		for (let i = value.length - 1; i >= 0; i--) {
@@ -188,6 +197,9 @@ export class LinkedList<T> {
    * list
    * // LinkedList[1, 2, 3, 4]
 	 * ```
+   * 
+   * @public
+   * @since 0.0.1
    */
 	push(value: T, ...rest: Array<T>) {
 		// handle multiple arguments
@@ -205,6 +217,7 @@ export class LinkedList<T> {
 			this.tail = this.head.next;
 			this.tail.prev = this.head;
 		} else {
+			node.prev = this.tail;
 			this.tail.next = node;
 			this.tail = this.tail.next;
 		}
@@ -226,6 +239,9 @@ export class LinkedList<T> {
    * list
    * // LinkedList["very first", "second first", "first", 1, 2, 3]
    * ```
+   * 
+   * @public
+   * @since 0.0.1
    */
 	unshift(value: T, ...rest: Array<T>) {
 		// handle multiple arguments
@@ -253,12 +269,14 @@ export class LinkedList<T> {
 
 	/**
    * Convert LinkedList into JavaScript Array
-   * @returns new instance of an `LinkedList`
-   * 
    * ```ts
    * const list = new LinkedList(1,2,3);
    * list.toArray(); // [1,2,3]
    * ```
+   * 
+   * @public
+   * @since 0.0.1
+   * @returns new instance of an `LinkedList`
    */
 	toArray() {
 		const arr = [];
@@ -272,7 +290,6 @@ export class LinkedList<T> {
 
 	/**
    * Concat Multiple `LinkedList` and return new instance of `LinkedList`
-   * @param value - `LinkedList` to be concat
    * 
    * ```ts
    * const list = new LinkedList(1, 2);
@@ -285,8 +302,16 @@ export class LinkedList<T> {
    * secondList.concat(list).concat(thirdList);
    * // LinkedList[3, 4, 1, 2, 5, 6, 7]
    * ```
+   * 
+   * @public
+   * @since 0.0.1
+   * @param value - `LinkedList` to be concat
+   * @returns new instance of `LinkedList`
    */
 	concat(value: LinkedList<T>): LinkedList<T> {
+		if (!LinkedList.is(value)) {
+			throw new TypeError("given parameter is not a valid LinkedList");
+		}
 		const current = this.toArray();
 		const next = value.toArray();
 		return new LinkedList(...[...current, ...next]);

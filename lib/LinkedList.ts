@@ -1,9 +1,21 @@
 /**
+ * Node for LinkedList
  * @internal
  */
 class ListNode<T> {
+	/**
+   * the value of the Node
+   */
 	value: T;
+
+	/**
+   * pointer to the next Node
+   */
 	next: ListNode<T> | null;
+
+	/**
+   * pointer to previous Node
+   */
 	prev: ListNode<T> | null;
 	constructor(value: T) {
 		this.value = value;

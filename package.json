@@ -13,8 +13,7 @@
   ],
   "lint-staged": {
     "*.ts*": [
-      "rome check --apply",
-      "git add"
+      "rome check --apply"
     ]
   },
   "dependencies": {},

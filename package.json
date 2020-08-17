@@ -11,6 +11,12 @@
   "files": [
     "dist"
   ],
+  "lint-staged": {
+    "*.ts*": [
+      "rome check --apply",
+      "git add"
+    ]
+  },
   "dependencies": {},
   "scripts": {
     "test": "mocha",
@@ -28,6 +34,7 @@
     "@types/mocha": "^8.0.2",
     "chai": "^4.2.0",
     "husky": "^4.2.5",
+    "lint-staged": "^10.2.11",
     "mocha": "^8.1.1",
     "rimraf": "^3.0.2",
     "rollup": "^2.26.3",

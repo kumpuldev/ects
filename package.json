@@ -4,10 +4,19 @@
   "license": "MIT",
   "author": "Ade Yahya Prasetyo <adeyahyaprasetyo@gmail.com> (https://www.adeyahya.com)",
   "version": "0.0.2-alpha",
-  "main": "index.js",
-  "dependencies": {
-    "rome": "^10.0.4-beta"
+  "types": "dist/index.d.ts",
+  "main": "dist/index.js",
+  "module": "dist/index.es.js",
+  "browser": "dist/index.bundle.js",
+  "files": [
+    "dist"
+  ],
+  "lint-staged": {
+    "*.ts*": [
+      "rome check --apply"
+    ]
   },
+  "dependencies": {},
   "scripts": {
     "test": "mocha",
     "test:watch": "npm run test -- --watch",
@@ -15,15 +24,24 @@
     "lint:apply": "rome check --apply",
     "precommit": "npm run lint && npm run lint:apply && npm run test",
     "doc": "typedoc --out dist/docs --mode file lib/",
-    "build": "tsc"
+    "build": "rimraf dist && rollup --config scripts/rollup.config.js",
+    "verify": "npm run test && npm run build"
   },
   "devDependencies": {
+    "@rollup/plugin-typescript": "^5.0.2",
     "@types/chai": "^4.2.12",
     "@types/mocha": "^8.0.2",
     "chai": "^4.2.0",
     "husky": "^4.2.5",
+    "lint-staged": "^10.2.11",
     "mocha": "^8.1.1",
+    "rimraf": "^3.0.2",
+    "rollup": "^2.26.3",
+    "rollup-plugin-terser": "^7.0.0",
+    "rollup-plugin-typescript2": "^0.27.2",
+    "rome": "^10.0.4-beta",
     "ts-node": "^8.10.2",
+    "tslib": "^2.0.1",
     "typedoc": "^0.18.0",
     "typescript": "^3.9.7"
   },

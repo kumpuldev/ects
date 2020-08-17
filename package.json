@@ -3,7 +3,7 @@
   "description": "advance data structure for javascript",
   "license": "MIT",
   "author": "Ade Yahya Prasetyo <adeyahyaprasetyo@gmail.com> (https://www.adeyahya.com)",
-  "version": "0.0.2-alpha",
+  "version": "0.1.2-alpha",
   "types": "dist/index.d.ts",
   "main": "dist/index.js",
   "module": "dist/index.es.js",

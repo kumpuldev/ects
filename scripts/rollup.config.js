@@ -9,6 +9,16 @@ const sharedConfig = {
 	},
 };
 
+const tsConfig = {
+  tsconfigOverride: {
+    compilerOptions: {
+      module: "esnext"
+    }
+  },
+  sourceMap: true,
+  tslib: require("tslib"),
+}
+
 export default [
 	{
 		...sharedConfig,
@@ -17,11 +27,7 @@ export default [
 			format: "es",
 		},
 		plugins: [
-			typescript({
-				typescript: require("typescript"),
-				sourceMap: true,
-				tslib: require("tslib"),
-			}),
+			typescript(tsConfig),
 		],
 	},
 	{
@@ -31,10 +37,7 @@ export default [
 			format: "cjs",
 		},
 		plugins: [
-			typescript({
-				sourceMap: true,
-				tslib: require("tslib"),
-			}),
+			typescript(tsConfig),
 			terser(),
 		],
 	},
@@ -46,10 +49,7 @@ export default [
 			name: "etcs",
 		},
 		plugins: [
-			typescript({
-				sourceMap: true,
-				tslib: require("tslib"),
-			}),
+			typescript(tsConfig),
 			terser(),
 		],
 	},

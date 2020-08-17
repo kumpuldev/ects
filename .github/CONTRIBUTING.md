@@ -1,7 +1,6 @@
 # Have a question?
 
-Please ask questions on [Stack Overflow](https://stackoverflow.com/questions/tagged/immutable.js) instead of opening a Github Issue. There are more people on Stack Overflow who
-can answer questions, and good answers can be searchable and canonical.
+Please ask questions on [Github Issue](https://github.com/kumpuldev/ects/issues/new) mark with label `question` 
 
 # Issues
 
@@ -31,12 +30,14 @@ your [pull requests](https://help.github.com/articles/creating-a-pull-request).
 
 ## Documentation
 
--
+- Documentation generated using tsdoc, we encourage to visit [playground](https://microsoft.github.io/tsdoc/) if you're not familiar with.
 
 ## Coding Style
 
-* we use Romefrontend as linter
-Run the following command to check or apply linter
+* we use [Romefrontend](https://romefrontend.dev/) as linter
+
+Run the following command to check or apply linter or simply commiting
+your changes will trigger pre-commit hooks that do linting and safefix
 ```bash
 yarn lint
 yarn lint:apply
@@ -46,7 +47,7 @@ yarn lint:apply
 
 Run the following command to build the library and test functionality:
 ```bash
-yarn test
+yarn verify
 ```
 
 ## License

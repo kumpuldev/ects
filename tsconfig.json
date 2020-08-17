@@ -3,6 +3,8 @@
 	"compilerOptions": {
 		"target": "es5",
 		"module": "commonjs",
+		"declarationDir": "dist",
+		"outDir": "dist",
 		"declaration": true,
 		"sourceMap": true,
 		"declarationMap": true,
@@ -12,8 +14,7 @@
 		"lib": [
 			"es5",
 			"DOM"
-		],
-		"outDir": "dist"
+		]
 	},
 	"include": [
 		"index.ts",

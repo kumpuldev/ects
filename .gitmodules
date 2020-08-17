@@ -1,0 +1,3 @@
+[submodule "themes/typedoc"]
+	path = themes/typedoc
+	url = git@github.com:kumpuldev/typedoc-default-themes-with-runkit.git

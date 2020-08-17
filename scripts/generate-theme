@@ -1,0 +1,10 @@
+#!/usr/bin/env node
+const {execSync} = require('child_process');
+const path = require("path");
+
+const context = path.resolve(__dirname, "../themes/typedoc");
+
+/**
+ * generate typedoc theme in submodule
+ */
+execSync("npm install", {cwd: context});

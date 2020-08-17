@@ -378,4 +378,36 @@ export class LinkedList<T> {
 
 		return null;
 	}
+
+	/**
+   * The forEach() method executes a provided function once for each LinkedList element.
+   * ```ts
+   * const list = new LinkedList('a', 'b', 'c');
+   * list.forEach(element => console.log(element.value));
+   * // expected output: "a"
+   * // expected output: "b"
+   * // expected output: "c"
+   * ```
+   * 
+   * @param cb - function to execute on each element in the LinkedList, taking 3 arguments
+   */
+	forEach(
+		cb: (
+			element: ListNode<T>,
+			index?: number,
+			linkedList?: LinkedList<T>,
+		) => unknown,
+	) {
+		if (!cb || typeof cb !== "function") {
+			throw new Error("a valid callback argument is required!");
+		}
+
+		let currentNode = this.head;
+		let idx = 0;
+		while (currentNode) {
+			cb(currentNode, idx, this);
+			idx++;
+			currentNode = currentNode.next;
+		}
+	}
 }

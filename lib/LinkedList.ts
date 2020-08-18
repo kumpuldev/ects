@@ -410,4 +410,36 @@ export class LinkedList<T> {
 			currentNode = currentNode.next;
 		}
 	}
+
+	/**
+   * remove the first element on the LinkedList
+   * ```ts
+   * const list = new LinkedList(1,2,3);
+   * list.shift();
+   * console.log(list.toArray()); // [2, 3]
+   * 
+   * const emptyList = new LinkedList();
+   * console.log(emptyList.shift()); // undefined
+   * ```
+   * 
+   * @public
+   * @since 0.1.2-alpha
+   */
+	shift(): ListNode<T> | undefined {
+		let shifted = undefined;
+		if (this.length === 1) {
+			shifted = this.head;
+			this.head = null;
+			this.tail = null;
+			this.length = 0;
+		} else if (this.length > 1) {
+			shifted = this.head;
+			this.head = this.head.next;
+			this.head.prev = null;
+			this.length--;
+			shifted.next = null;
+		}
+
+		return shifted;
+	}
 }

@@ -1,1 +1,1 @@
-export {LinkedList} from "./lib/LinkedList";
+export {LinkedList, ListNode} from "./lib/LinkedList";

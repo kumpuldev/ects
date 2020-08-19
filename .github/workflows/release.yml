@@ -19,6 +19,8 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Setup node
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node }}

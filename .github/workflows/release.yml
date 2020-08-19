@@ -19,11 +19,10 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Setup node
-        env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
       - run: npm install
       - run: npm run semantic-release

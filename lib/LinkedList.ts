@@ -1,8 +1,9 @@
 /**
  * Node for LinkedList
- * @internal
+ * @public
+ * @since 0.0.0
  */
-class ListNode<T> {
+export class ListNode<T> {
 	/**
    * the value of the Node
    */
@@ -409,6 +410,45 @@ export class LinkedList<T> {
 			idx++;
 			currentNode = currentNode.next;
 		}
+	}
+	/**
+   * The pop() method removes the last element from an LinkedList and returns that element.
+   * This method changes the length of the LinkedList.
+   * ```ts
+   * const plants = new LinkedList('broccoli', 'cauliflower', 'cabbage', 'kale', 'tomato')
+   * console.log(plants.pop().value);
+   * // expected output: "tomato"
+   * 
+   * console.log(plants.toArray());
+   * // expected output: Array ["broccoli", "cauliflower", "cabbage", "kale"]
+   * 
+   * plants.pop();
+   * 
+   * console.log(plants.toArray());
+   * // expected output: Array ["broccoli", "cauliflower", "cabbage"]
+   * ```
+   * 
+   * @public
+   * @since 0.2.0-alpha
+   */
+	pop(): ListNode<T> | undefined {
+		let poped = undefined;
+		if (this.length === 0) {
+			return poped;
+		} else if (this.length === 1) {
+			poped = this.head;
+			this.length = 0;
+			this.tail = null;
+			this.head = null;
+		} else {
+			poped = this.tail;
+			this.length--;
+			this.tail = this.tail.prev;
+			this.tail.next = null;
+			poped.prev = null;
+		}
+
+		return poped;
 	}
 
 	/**

@@ -487,7 +487,8 @@ export class LinkedList<T> {
    * find index of specific node
    * ```ts
    * const list = new LinkedList(1,2,3);
-   * const target = list.next.next;
+   * const target = list.head.next.next;
+   * 
    * console.log(list.indexOf(target)); // 2
    * ```
    * 

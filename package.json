@@ -29,6 +29,9 @@
     "semantic-release": "semantic-release",
     "build": "npm run clean && rollup --config scripts/rollup.config.js"
   },
+  "resolutions": {
+    "mem": "^4.0.0"
+  },
   "devDependencies": {
     "@rollup/plugin-typescript": "^5.0.2",
     "@types/chai": "^4.2.12",

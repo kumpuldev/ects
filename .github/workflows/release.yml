@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: CI
+name: release
 
 # Controls when the action will run. Triggers the workflow on push or pull request
 # events but only for the master branch
@@ -12,15 +12,14 @@ on:
 jobs:
   build:
     runs-on: ubuntu-16.04
-    strategy:
-      matrix:
-        node: [ '10', '12' ]
-    name: Node ${{ matrix.node }} sample
     steps:
-      - uses: actions/checkout@v2
-      - name: Setup node
-        uses: actions/setup-node@v1
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Semantic Release
+        uses: cycjimmy/semantic-release-action@v2
         with:
-          node-version: ${{ matrix.node }}
-      - run: npm install
-      - run: npm run semantic-release
+          semantic_version: 15.13.28  # It is recommended to specify specifying version range
+                                  # for semantic-release.
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

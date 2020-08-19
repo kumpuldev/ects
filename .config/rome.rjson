@@ -8,6 +8,7 @@ lint: {
 	ignore: [
 		"node_modules"
 		"scripts"
+		"themes"
 ]
 }
 root: true

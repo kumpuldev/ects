@@ -382,6 +382,7 @@ export class LinkedList<T> {
 
 	/**
    * The forEach() method executes a provided function once for each LinkedList element.
+   * 
    * ```ts
    * const list = new LinkedList('a', 'b', 'c');
    * list.forEach(element => console.log(element.value));
@@ -414,6 +415,7 @@ export class LinkedList<T> {
 	/**
    * The pop() method removes the last element from an LinkedList and returns that element.
    * This method changes the length of the LinkedList.
+   * 
    * ```ts
    * const plants = new LinkedList('broccoli', 'cauliflower', 'cabbage', 'kale', 'tomato')
    * console.log(plants.pop().value);
@@ -453,6 +455,7 @@ export class LinkedList<T> {
 
 	/**
    * remove the first element on the LinkedList
+   * 
    * ```ts
    * const list = new LinkedList(1,2,3);
    * list.shift();
@@ -485,10 +488,10 @@ export class LinkedList<T> {
 
 	/**
    * find index of specific node
+   * 
    * ```ts
    * const list = new LinkedList(1,2,3);
    * const target = list.head.next.next;
-   * 
    * console.log(list.indexOf(target)); // 2
    * ```
    * 

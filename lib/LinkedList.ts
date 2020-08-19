@@ -482,4 +482,29 @@ export class LinkedList<T> {
 
 		return shifted;
 	}
+
+	/**
+   * find index of specific node
+   * ```ts
+   * const list = new LinkedList(1,2,3);
+   * const target = list.next.next;
+   * console.log(list.indexOf(target)); // 2
+   * ```
+   * 
+   * @param value - ListNode
+   */
+	indexOf(value: ListNode<unknown>) {
+		let currentNode = this.head;
+		let currentIndex = 0;
+		while (currentNode) {
+			if (currentNode === value) {
+				return currentIndex;
+			}
+
+			currentNode = currentNode.next;
+			currentIndex++;
+		}
+
+		return -1;
+	}
 }

@@ -511,4 +511,113 @@ export class LinkedList<T> {
 
 		return -1;
 	}
+
+	/**
+   * sort values
+   * 
+   * ```ts
+   * const list = new LinkedList(2, 1, 3);
+   * list.sort()
+   * // output [1, 2, 3]
+   * list.sort((a, b) => {a.values - b.values})
+   * // output [3, 2, 1];
+   * ```
+   * 
+   * @param callback - compare function to define sort order. If omitted, the ListNode values are converted to strings, then sorted according to each character's Unicode code point value. takes 2 arguments, the left ListNode and right ListNode
+   */
+	sort(
+		callback?: (leftNode: ListNode<T>, rightNode: ListNode<T>) => -1 | 1,
+	): LinkedList<T> {
+		if (typeof callback !== "undefined" && typeof callback !== "function") {
+			throw TypeError(`callback isn't a valid function`);
+		}
+
+		/**
+     * Default comparison function
+     * 
+     * Compares the Unicode code point value from left and right string. 
+     * @param lString left string
+     * @param rString right string
+     */
+		function defaultCompareFn(lString: string, rString: string) {
+			let idx = 0;
+			while (true) {
+				if (lString[idx] !== rString[idx]) {
+					break;
+				}
+				idx += 1;
+			}
+			const l = lString.charCodeAt(idx);
+			const r = rString.charCodeAt(idx);
+			if (l < r) {
+				return true;
+			}
+			return false;
+		}
+		const computedCb =
+			callback ||
+			function defaultCallback<T>(l: ListNode<T>, r: ListNode<T>): -1 | 0 | 1 {
+				if (typeof l === "undefined" && typeof r === "undefined") {
+					return 0;
+				}
+				if (typeof l === "undefined") {
+					return 1;
+				}
+				if (typeof r === "undefined") {
+					return -1;
+				}
+				const lString = `${l.value}`;
+				const rString = `${r.value}`;
+				const lSmaller = defaultCompareFn(lString, rString);
+				if (lSmaller) {
+					return -1;
+				}
+				const rSmaller = defaultCompareFn(lString, rString);
+				if (rSmaller) {
+					return 1;
+				}
+				return 0;
+			};
+
+		/**
+     * merges two array
+     * @param lArray left array
+     * @param rArray right array
+     */
+		function merge(lArray: Array<T>, rArray: Array<T>): Array<T> {
+			const result = [];
+			let lIdx = 0;
+			let rIdx = 0;
+			while (lIdx < lArray.length && rIdx < rArray.length) {
+				if (
+					computedCb(new ListNode(lArray[lIdx]), new ListNode(rArray[rIdx])) <=
+					0
+				) {
+					result.push(rArray[rIdx]);
+					rIdx += 1;
+				} else {
+					result.push(lArray[lIdx]);
+					lIdx += 1;
+				}
+			}
+			return result.concat(lArray.slice(lIdx)).concat(rArray.slice(rIdx));
+		}
+
+		/**
+     * Perform mergesort recursively
+     * @param unsortedArray unsorted array
+     */
+		function mergeSort(unsortedArray: Array<T>): Array<T> {
+			if (unsortedArray.length <= 1) {
+				return unsortedArray;
+			}
+			const middle = Math.floor(unsortedArray.length / 2);
+			const left = unsortedArray.slice(0, middle);
+			const right = unsortedArray.slice(middle);
+			return merge(mergeSort(left), mergeSort(right));
+		}
+
+		const sortedArray = mergeSort(this.toArray());
+		return new LinkedList(...sortedArray);
+	}
 }
